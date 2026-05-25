@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Как зарабатывали ОНЕ? — Forbes Russia</title>
+<meta name="description" content="Серия рилсов Forbes. Деньги исторических личностей в пересчёте на сегодня.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black:      #0c0c0c;
+  --dark:       #141414;
+  --card-dark:  #1a1a1a;
+  --white:      #ffffff;
+  --off-white:  #f5f2ec;
+  --warm-gray:  #e8e4dc;
+  --text-muted: #888880;
+  --text-body:  #3a3a38;
+  --gold:       #c8a84b;
+  --gold-light: #e2c87a;
+  --gold-dim:   rgba(200,168,75,0.15);
+  --border-dark:  rgba(255,255,255,0.08);
+  --border-light: rgba(0,0,0,0.1);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:'Manrope',sans-serif; background:var(--black); color:var(--white); overflow-x:hidden; }
+
+.label {
+  font-family:'Manrope',sans-serif;
+  font-size:10px; font-weight:700;
+  letter-spacing:4px; text-transform:uppercase;
+  color:var(--gold);
+}
+.label-light { color:var(--text-muted); }
+.reveal { opacity:0; transform:translateY(24px); transition:opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity:1; transform:translateY(0); }
+
+/* ── NAV ── */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:20px 48px;
+  background:rgba(12,12,12,0.92);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border-dark);
+}
+.nav-logo { display:flex; align-items:center; gap:16px; }
+.nav-forbes {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:24px; font-weight:400;
+  letter-spacing:3px; color:var(--gold);
+  text-transform:uppercase;
+}
+.nav-divider { width:1px; height:20px; background:var(--border-dark); }
+.nav-title {
+  font-family:'Manrope',sans-serif;
+  font-size:11px; font-weight:500;
+  letter-spacing:3px; text-transform:uppercase;
+  color:var(--text-muted);
+}
+.nav-city {
+  font-size:11px; font-weight:600;
+  letter-spacing:3px; text-transform:uppercase;
+  color:var(--text-muted);
+}
+
+/* ── HERO ── */
+.hero {
+  min-height:100vh; position:relative;
+  display:flex; flex-direction:column;
+  justify-content:flex-end; overflow:hidden;
+}
+.hero-bg {
+  position:absolute; inset:0; z-index:0;
+  background:
+    radial-gradient(ellipse at 25% 35%, rgba(200,168,75,0.07) 0%, transparent 50%),
+    radial-gradient(ellipse at 75% 65%, rgba(200,168,75,0.04) 0%, transparent 45%),
+    linear-gradient(150deg, #141414 0%, #0c0c0c 50%, #080808 100%);
+}
+.hero::before {
+  content:'';
+  position:absolute; inset:0; z-index:2;
+  background:linear-gradient(to top, rgba(12,12,12,0.97) 0%, rgba(12,12,12,0.25) 55%, transparent 100%);
+}
+.hero-content {
+  position:relative; z-index:3;
+  padding:0 48px 72px;
+}
+.hero-line { width:60px; height:2px; background:var(--gold); margin-bottom:28px; }
+.hero-label { margin-bottom:16px; }
+.hero-title {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(56px,9vw,112px);
+  font-weight:400; letter-spacing:3px;
+  color:var(--white); line-height:0.92;
+  margin-bottom:40px;
+}
+.hero-title span { color:var(--gold); }
+.hero-meta { display:flex; align-items:flex-start; gap:0; flex-wrap:wrap; }
+.hero-meta-item { padding:0 32px 0 0; }
+.hero-meta-sep { width:1px; background:var(--border-dark); align-self:stretch; margin-right:32px; }
+.hero-meta-value {
+  font-family:'Manrope',sans-serif;
+  font-size:14px; font-weight:700; color:var(--white);
+}
+.hero-meta-key {
+  font-size:9px; font-weight:600;
+  letter-spacing:2px; text-transform:uppercase;
+  color:var(--text-muted); margin-top:4px;
+}
+.hero-scroll {
+  position:absolute; bottom:32px; right:48px; z-index:3;
+  font-size:9px; font-weight:700;
+  letter-spacing:3px; text-transform:uppercase;
+  color:var(--text-muted); writing-mode:vertical-rl;
+}
+
+/* ── CONCEPT (светлый) ── */
+.concept {
+  background:var(--off-white); color:var(--text-body);
+  padding:100px 48px;
+}
+.concept-grid {
+  max-width:1100px; margin:0 auto;
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:80px; align-items:start;
+}
+.concept-left-label { color:var(--text-muted); margin-bottom:20px; }
+.concept-headline {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(44px,6.5vw,84px);
+  letter-spacing:2px; color:var(--black);
+  line-height:0.95;
+}
+.concept-headline span { color:var(--gold); }
+.concept-body {
+  font-size:clamp(15px,1.7vw,17px);
+  font-weight:400; color:var(--text-body);
+  line-height:1.75; margin-bottom:32px;
+}
+.concept-stats {
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:2px; background:var(--border-light);
+}
+.concept-stat {
+  background:var(--off-white); padding:24px 20px;
+}
+.concept-stat-num {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:44px; color:var(--gold);
+  letter-spacing:2px; line-height:1; margin-bottom:4px;
+}
+.concept-stat-label {
+  font-size:9px; font-weight:700;
+  letter-spacing:3px; text-transform:uppercase;
+  color:var(--text-muted);
+}
+
+/* ── MECHANICS (тёмный) ── */
+.mechanics { background:var(--dark); padding:100px 48px; }
+.mechanics-inner { max-width:1100px; margin:0 auto; }
+.mechanics-header {
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:80px; align-items:end; margin-bottom:64px;
+}
+.mechanics-headline {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(44px,6.5vw,84px);
+  letter-spacing:2px; color:var(--white); line-height:0.95;
+}
+.mechanics-desc {
+  font-size:clamp(14px,1.6vw,16px);
+  color:var(--text-muted); line-height:1.75;
+}
+.acts {
+  display:grid; grid-template-columns:repeat(3,1fr);
+  gap:2px; background:var(--border-dark);
+}
+.act {
+  background:var(--card-dark); padding:36px 28px;
+  transition:background 0.2s;
+}
+.act:hover { background:#1f1f1f; }
+.act-num {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:72px; color:var(--gold);
+  opacity:0.22; line-height:1; margin-bottom:20px;
+}
+.act-title {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(18px,2vw,22px);
+  letter-spacing:1px; color:var(--white);
+  margin-bottom:12px;
+}
+.act-desc {
+  font-size:clamp(12px,1.4vw,14px);
+  color:var(--text-muted); line-height:1.7;
+}
+
+/* ── KEY MOMENT (чёрный) ── */
+.key-moment { background:var(--black); padding:120px 48px; text-align:center; }
+.key-moment-inner { max-width:900px; margin:0 auto; }
+.key-formula {
+  display:flex; align-items:center;
+  justify-content:center; gap:20px;
+  flex-wrap:wrap; margin:40px 0 56px;
+}
+.formula-item {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(18px,3vw,32px);
+  letter-spacing:3px; color:var(--white);
+  border:1px solid var(--border-dark);
+  padding:14px 22px;
+}
+.formula-item.gold {
+  color:var(--gold);
+  border-color:rgba(200,168,75,0.35);
+  background:rgba(200,168,75,0.06);
+}
+.formula-arrow { font-size:18px; color:var(--gold); opacity:0.4; }
+.key-headline {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(32px,5vw,64px);
+  letter-spacing:2px; color:var(--white);
+  line-height:1; margin-bottom:24px;
+}
+.key-sub {
+  font-size:clamp(14px,1.6vw,16px);
+  color:var(--text-muted); line-height:1.75;
+  max-width:580px; margin:0 auto;
+}
+
+/* ── HEROES (тёмный) ── */
+.heroes-section { background:var(--dark); padding:100px 48px; }
+.heroes-inner { max-width:1100px; margin:0 auto; }
+.heroes-header-grid {
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:80px; align-items:end; margin-bottom:48px;
+}
+.heroes-headline {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(44px,6.5vw,84px);
+  letter-spacing:2px; color:var(--white); line-height:0.95;
+}
+.heroes-sub {
+  font-size:clamp(14px,1.6vw,16px);
+  color:var(--text-muted); line-height:1.75;
+}
+.heroes-grid {
+  display:grid; grid-template-columns:repeat(3,1fr);
+  gap:2px; background:var(--border-dark);
+}
+.hero-card {
+  background:var(--card-dark);
+  display:flex; flex-direction:column;
+  transition:background 0.2s;
+}
+.hero-card:hover { background:#1f1f1f; }
+.hero-photo {
+  width:100%; aspect-ratio:3/4;
+  object-fit:cover; object-position:center top; display:block;
+}
+.hero-photo-ph {
+  width:100%; aspect-ratio:3/4;
+  background:var(--black);
+  border-bottom:1px solid var(--border-dark);
+  display:flex; align-items:center; justify-content:center;
+}
+.hero-photo-ph-text {
+  font-size:9px; font-weight:700;
+  letter-spacing:2px; text-transform:uppercase;
+  color:var(--text-muted); opacity:0.5;
+  text-align:center; padding:20px;
+}
+.hero-body { padding:32px 28px 36px; flex:1; }
+.hero-episode { margin-bottom:8px; }
+.hero-era {
+  font-size:9px; font-weight:600;
+  letter-spacing:2px; text-transform:uppercase;
+  color:var(--text-muted); margin-bottom:10px;
+}
+.hero-name {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(24px,2.8vw,34px);
+  letter-spacing:1px; color:var(--white);
+  line-height:1; margin-bottom:8px;
+}
+.hero-work {
+  font-size:clamp(12px,1.4vw,14px);
+  color:var(--text-muted); margin-bottom:24px;
+  line-height:1.55;
+}
+.hero-money { display:flex; flex-direction:column; gap:8px; }
+.money-row-card {
+  background:var(--black);
+  border:1px solid var(--border-dark);
+  border-left:2px solid rgba(200,168,75,0.35);
+  padding:10px 14px;
+}
+.money-row-label {
+  font-size:8px; font-weight:700;
+  letter-spacing:2px; text-transform:uppercase;
+  color:var(--text-muted); margin-bottom:4px;
+}
+.money-row-value {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(20px,2.8vw,30px);
+  letter-spacing:1px; color:var(--white);
+}
+.money-row-value.gold { color:var(--gold); }
+.money-row-note {
+  font-size:clamp(10px,1.2vw,12px);
+  color:var(--text-muted); margin-top:2px; line-height:1.4;
+}
+.placeholder-tag { font-size:8px; letter-spacing:1px; opacity:0.55; }
+
+/* ── HERO BLOCKS (3-part structure) ── */
+.hero-block {
+  border-left:2px solid rgba(200,168,75,0.35);
+  padding:10px 14px;
+  margin-bottom:12px;
+}
+.hero-block:last-child { margin-bottom:0; }
+.hero-block-label {
+  font-size:8px; font-weight:700;
+  letter-spacing:3px; text-transform:uppercase;
+  color:var(--text-muted); margin-bottom:5px;
+}
+.hero-block-text {
+  font-size:clamp(12px,1.4vw,14px);
+  line-height:1.55; color:var(--white); opacity:0.82;
+}
+.hero-block-value {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(20px,2.5vw,28px);
+  letter-spacing:1px; color:var(--white);
+  margin-bottom:4px;
+}
+.hero-block-value.gold { color:var(--gold); }
+.hero-block-today { border-left-color:var(--gold); }
+
+/* ── FORMAT (чёрный) ── */
+.format-section { background:var(--black); padding:100px 48px; }
+.format-inner { max-width:1100px; margin:0 auto; }
+.format-header {
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:80px; align-items:end; margin-bottom:64px;
+}
+.format-headline {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(44px,6.5vw,84px);
+  letter-spacing:2px; color:var(--white); line-height:0.95;
+}
+.format-desc {
+  font-size:clamp(14px,1.6vw,16px);
+  color:var(--text-muted); line-height:1.75;
+}
+.format-grid {
+  display:grid; grid-template-columns:repeat(2,1fr);
+  gap:2px; background:var(--border-dark);
+}
+.format-item {
+  background:var(--card-dark); padding:48px 36px;
+}
+.format-item-icon { font-size:36px; margin-bottom:24px; }
+.format-item-title {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(24px,3vw,36px);
+  letter-spacing:2px; color:var(--gold);
+  margin-bottom:16px;
+}
+.format-item-body {
+  font-size:clamp(13px,1.5vw,15px);
+  color:var(--text-muted); line-height:1.75;
+  margin-bottom:20px;
+}
+.format-platforms { display:flex; gap:8px; flex-wrap:wrap; }
+.platform-tag {
+  font-size:9px; font-weight:700;
+  letter-spacing:2px; text-transform:uppercase;
+  color:var(--gold);
+  border:1px solid rgba(200,168,75,0.25);
+  background:var(--gold-dim); padding:5px 12px;
+}
+
+/* ── NEXT HEROES (светлый) ── */
+.next-heroes { background:var(--off-white); color:var(--text-body); padding:100px 48px; }
+.next-heroes-inner { max-width:1100px; margin:0 auto; }
+.next-heroes-header {
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:80px; align-items:end; margin-bottom:64px;
+}
+.next-heroes-headline {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(44px,6.5vw,84px);
+  letter-spacing:2px; color:var(--black); line-height:0.95;
+}
+.next-heroes-desc {
+  font-size:clamp(14px,1.6vw,16px);
+  color:var(--text-muted); line-height:1.75;
+}
+.next-heroes-list { display:flex; flex-direction:column; }
+.next-hero-row {
+  display:flex; align-items:center;
+  justify-content:space-between;
+  padding:20px 0;
+  border-bottom:1px solid var(--border-light);
+}
+.next-hero-row:last-child { border-bottom:none; }
+.next-hero-left { display:flex; align-items:center; gap:24px; }
+.next-hero-idx {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:30px; color:var(--gold);
+  opacity:0.35; min-width:36px; line-height:1;
+}
+.next-hero-name {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(20px,2.8vw,32px);
+  letter-spacing:1px; color:var(--black);
+}
+.next-hero-meta {
+  font-size:9px; font-weight:700;
+  letter-spacing:3px; text-transform:uppercase;
+  color:var(--text-muted);
+}
+
+/* ── REFERENCES (тёмный) ── */
+.references { background:var(--dark); padding:100px 48px; }
+.references-inner { max-width:1100px; margin:0 auto; }
+.refs-headline {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(44px,6.5vw,84px);
+  letter-spacing:2px; color:var(--white);
+  line-height:0.95; margin-bottom:64px;
+}
+.refs-grid {
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:48px 80px;
+}
+.refs-col-label {
+  font-size:9px; font-weight:700;
+  letter-spacing:4px; text-transform:uppercase;
+  color:var(--gold); margin-bottom:24px;
+  padding-bottom:16px;
+  border-bottom:1px solid rgba(200,168,75,0.3);
+}
+.ref-list { display:flex; flex-direction:column; }
+.ref-row {
+  display:flex; gap:20px;
+  padding:16px 0;
+  border-bottom:1px solid var(--border-dark);
+}
+.ref-row:last-child { border-bottom:none; }
+.ref-n {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:28px; color:var(--gold);
+  opacity:0.3; line-height:1; min-width:30px;
+}
+.ref-title {
+  font-size:clamp(12px,1.5vw,14px);
+  font-weight:700; color:var(--white); margin-bottom:4px;
+}
+.ref-desc {
+  font-size:clamp(12px,1.4vw,14px);
+  color:var(--text-muted); line-height:1.55;
+}
+
+/* ── FOOTER ── */
+footer {
+  background:var(--black); padding:80px 48px 48px;
+  border-top:1px solid var(--border-dark);
+}
+.footer-inner {
+  max-width:1100px; margin:0 auto;
+  display:flex; justify-content:space-between; align-items:flex-end;
+}
+.footer-title {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(40px,6vw,72px);
+  letter-spacing:3px; line-height:1; color:var(--white);
+}
+.footer-title span { color:var(--gold); }
+.footer-sub {
+  font-size:10px; font-weight:600;
+  letter-spacing:3px; text-transform:uppercase;
+  color:var(--text-muted); margin-top:12px;
+}
+.footer-right { text-align:right; }
+.footer-label {
+  font-size:9px; font-weight:700;
+  letter-spacing:3px; text-transform:uppercase;
+  color:var(--text-muted); margin-bottom:6px;
+}
+.footer-forbes {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:24px; letter-spacing:5px; color:var(--gold);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width:900px) {
+  nav { padding:16px 20px; }
+  .nav-title, .nav-divider { display:none; }
+  .hero-content { padding:0 20px 56px; }
+  .hero-scroll { display:none; }
+  .concept, .mechanics, .key-moment, .heroes-section,
+  .format-section, .next-heroes, .references { padding:64px 20px; }
+  footer { padding:64px 20px 40px; }
+  .concept-grid, .mechanics-header, .format-header,
+  .next-heroes-header, .heroes-header-grid { grid-template-columns:1fr; gap:32px; }
+  .acts, .heroes-grid { grid-template-columns:1fr; }
+  .refs-grid, .format-grid { grid-template-columns:1fr; gap:40px; }
+  .footer-inner { flex-direction:column; align-items:flex-start; gap:24px; }
+  .footer-right { text-align:left; }
+}
+@media (max-width:600px) {
+  nav { position:relative; }
+  .hero { min-height:auto; padding-top:80px; }
+  .concept-stats { grid-template-columns:1fr; }
+  .hero-meta { flex-direction:column; gap:16px; }
+  .hero-meta-sep { display:none; }
+  .key-formula { gap:10px; }
+  .formula-item { font-size:14px; padding:10px 14px; letter-spacing:1px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-logo">
+    <div class="nav-forbes">Forbes</div>
+    <div class="nav-divider"></div>
+    <div class="nav-title">Как зарабатывали ОНЕ?</div>
+  </div>
+  <div class="nav-city">Сезон 1 · 2026</div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-line"></div>
+    <div class="label hero-label">Новый проект Forbes Russia</div>
+    <div class="hero-title">Как зарабатывали<br><span>ОНЕ?</span></div>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <div class="hero-meta-value">3 героя</div>
+        <div class="hero-meta-key">Первый сезон</div>
+      </div>
+      <div class="hero-meta-sep"></div>
+      <div class="hero-meta-item">
+        <div class="hero-meta-value">~60 секунд</div>
+        <div class="hero-meta-key">Один рилс</div>
+      </div>
+      <div class="hero-meta-sep"></div>
+      <div class="hero-meta-item">
+        <div class="hero-meta-value">XIX–XX век</div>
+        <div class="hero-meta-key">Эпоха героев</div>
+      </div>
+      <div class="hero-meta-sep"></div>
+      <div class="hero-meta-item">
+        <div class="hero-meta-value">Forbes Russia</div>
+        <div class="hero-meta-key">Продюсер</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">Листать</div>
+</section>
+
+<!-- ── CONCEPT ── -->
+<section class="concept">
+  <div class="concept-grid">
+    <div class="reveal">
+      <div class="label concept-left-label" style="color:var(--text-muted); margin-bottom:20px;">Хайконцепт</div>
+      <div class="concept-headline">Деньги<br>прошлого —<br><span style="color:var(--gold);">в ценах сегодня</span></div>
+    </div>
+    <div class="reveal">
+      <p class="concept-body">
+        Каждый рилс — один исторический герой. Один главный заработок его жизни. Мы берём реальные цифры эпохи, переводим в рубли 2026 года — и спрашиваем: что он мог позволить себе тогда и что купил бы сейчас?
+      </p>
+      <p class="concept-body">
+        Пушкин написал «Евгения Онегина». Рахманинов давал концерты в Нью-Йорке. Абрикосов строил кондитерскую империю. Сколько они зарабатывали — и как это выглядит в деньгах сегодня?
+      </p>
+      <div class="concept-stats">
+        <div class="concept-stat">
+          <div class="concept-stat-num">XIX</div>
+          <div class="concept-stat-label">Век героев</div>
+        </div>
+        <div class="concept-stat">
+          <div class="concept-stat-num">2026</div>
+          <div class="concept-stat-label">Год пересчёта</div>
+        </div>
+        <div class="concept-stat">
+          <div class="concept-stat-num">60"</div>
+          <div class="concept-stat-label">Длина рилса</div>
+        </div>
+        <div class="concept-stat">
+          <div class="concept-stat-num">Forbes</div>
+          <div class="concept-stat-label">Проект</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── MECHANICS ── -->
+<section class="mechanics">
+  <div class="mechanics-inner">
+    <div class="mechanics-header reveal">
+      <div>
+        <div class="label" style="margin-bottom:20px;">Структура рилса</div>
+        <div class="mechanics-headline">Каждый рилс —<br>одна история</div>
+      </div>
+      <div class="mechanics-desc">
+        Шесть шагов — от биографии до вывода. Одна и та же структура, каждый раз новый герой, новая эпоха, новые деньги.
+      </div>
+    </div>
+    <div class="acts reveal">
+      <div class="act">
+        <div class="act-num">01</div>
+        <div class="act-title">Яркая фраза</div>
+        <div class="act-desc">Характерная для героя и его эпохи цитата или образ. Из грязи в князи, соль земли Русской — сразу задаёт тон.</div>
+      </div>
+      <div class="act">
+        <div class="act-num">02</div>
+        <div class="act-title">Герой</div>
+        <div class="act-desc">Краткое описание личности, дела и финансов. Кто он и почему его деньги важно считать.</div>
+      </div>
+      <div class="act">
+        <div class="act-num">03</div>
+        <div class="act-title">Сколько стоил его труд</div>
+        <div class="act-desc">Реальные цифры эпохи — гонорар, сделка, выручка. Сколько он получил в деньгах своего времени.</div>
+      </div>
+      <div class="act">
+        <div class="act-num">04</div>
+        <div class="act-title">Самый дорогой контракт</div>
+        <div class="act-desc">Главная сделка жизни. Книга, концертный тур, завод — один факт, который меняет масштаб восприятия.</div>
+      </div>
+      <div class="act">
+        <div class="act-num">05</div>
+        <div class="act-title">Путь героя</div>
+        <div class="act-desc">5–7 фактов о состоянии и жизни — только с числами. 22 ребёнка, 35 дуэлей, 1 900 рабочих. Визуально и точно.</div>
+      </div>
+      <div class="act">
+        <div class="act-num">06</div>
+        <div class="act-title">Состояние</div>
+        <div class="act-desc">Недвижимость, транспорт, активы. Что конкретно он имел — в деньгах и в вещах.</div>
+      </div>
+      <div class="act">
+        <div class="act-num">07</div>
+        <div class="act-title">Наследство</div>
+        <div class="act-desc">Что осталось после него — семье, стране, культуре. Долги или империя?</div>
+      </div>
+      <div class="act">
+        <div class="act-num">08</div>
+        <div class="act-title">Forbes-тест</div>
+        <div class="act-desc">Был бы он в Forbes сегодня? Место в списке, строчка рейтинга — финальный удар по масштабу.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CRITERIA ── -->
+<section class="key-moment" style="padding:80px 48px;">
+  <div class="key-moment-inner reveal">
+    <div class="label">Методология</div>
+    <div class="key-headline" style="margin-top:24px;">Критерии оценки<br>состояния героя</div>
+    <div class="key-formula" style="margin:40px 0 0; justify-content:center; gap:16px; flex-wrap:wrap;">
+      <div class="formula-item">Недвижимость</div>
+      <div class="formula-item">Бизнес / заводы</div>
+      <div class="formula-item">Самый дорогой контракт</div>
+      <div class="formula-item gold">Наследство</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── KEY MOMENT ── -->
+<section class="key-moment">
+  <div class="key-moment-inner reveal">
+    <div class="label">Ключевой образ шоу</div>
+    <div class="key-formula">
+      <div class="formula-item">Герой</div>
+      <div class="formula-arrow">→</div>
+      <div class="formula-item">Заработок</div>
+      <div class="formula-arrow">→</div>
+      <div class="formula-item">Пересчёт</div>
+      <div class="formula-arrow">→</div>
+      <div class="formula-item gold">Что купил бы сейчас</div>
+    </div>
+    <div class="key-headline">Один вопрос меняет всё:<br>сколько это стоит сегодня?</div>
+    <p class="key-sub">
+      Зритель впервые видит исторические деньги в понятных цифрах. Не абстрактные «тысячи рублей XIX века» — а конкретные квартиры, машины и яхты 2026 года.
+    </p>
+  </div>
+</section>
+
+<!-- ── HEROES ── -->
+<section class="heroes-section">
+  <div class="heroes-inner">
+    <div class="heroes-header-grid reveal">
+      <div>
+        <div class="label" style="margin-bottom:20px;">Сезон 1 · Герои</div>
+        <div class="heroes-headline">Три рилса.<br>Три эпохи.</div>
+      </div>
+      <div class="heroes-sub">
+        Литература, музыка, предпринимательство. Первый сезон охватывает три разных пути к деньгам в России XIX–XX века.
+      </div>
+    </div>
+    <div class="heroes-grid reveal">
+
+      <div class="hero-card">
+        <div class="hero-photo-ph">
+          <div class="hero-photo-ph-text">Портрет<br>Рахманинова</div>
+        </div>
+        <div class="hero-body">
+          <div class="hero-episode"><span class="label">Рилс 01</span></div>
+          <div class="hero-era">1873 — 1943</div>
+          <div class="hero-name">Сергей Рахманинов</div>
+          <div class="hero-work">Более 70 концертов за сезон в США. 1918–1943</div>
+          <div class="hero-money">
+            <div class="hero-block">
+              <div class="hero-block-label">Сколько заработал</div>
+              <div class="hero-block-text">За 25 лет концертной карьеры в США накопил $700 000. Time (1925): второй по доходам пианист мира — после Падеревского.</div>
+            </div>
+            <div class="hero-block">
+              <div class="hero-block-label">Что можно было позволить</div>
+              <div class="hero-block-text">Вилла Сенар у Люцернского озера (21 000 м², 1932–1934). Дом в Беверли-Хиллз (1942). Новый автомобиль каждый год.</div>
+            </div>
+            <div class="hero-block">
+              <div class="hero-block-label">На что реально потратил</div>
+              <div class="hero-block-text">Покупал новый автомобиль ежегодно с 1914-го — штрафовали за превышение скорости. $5 000 — Сикорскому на запуск вертолётной компании в США. Оплатил переезд Набокова с семьёй из Парижа в Нью-Йорк. $3 920 — первый чек советскому консулу в пользу Красной армии (1941).</div>
+            </div>
+            <div class="hero-block hero-block-today">
+              <div class="hero-block-label">Что можно позволить сейчас</div>
+              <div class="hero-block-value gold">~1,2 млрд руб.</div>
+              <div class="hero-block-text">$700 000 в 1943 году — сегодня около $13 млн. Вилла в Монако или пентхаус в Лондоне с видом на Темзу.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="hero-photo-ph">
+          <div class="hero-photo-ph-text">Портрет<br>Пушкина</div>
+        </div>
+        <div class="hero-body">
+          <div class="hero-episode"><span class="label">Рилс 02</span></div>
+          <div class="hero-era">1799 — 1837</div>
+          <div class="hero-name">Александр Пушкин</div>
+          <div class="hero-work">«Не продаётся вдохновенье, но можно рукопись продать» · Первый профессиональный литератор России</div>
+          <div class="hero-money">
+            <div class="hero-block">
+              <div class="hero-block-label">Сколько заработал</div>
+              <div class="hero-block-text">«Евгений Онегин» принёс 37 000 руб. За всю карьеру — 800 произведений за 17 лет, ~255 000 руб. ассигнациями (~$2,2 млн сегодня). Пушкин первым в России сделал литературу бизнесом.</div>
+            </div>
+            <div class="hero-block">
+              <div class="hero-block-label">Что можно было позволить</div>
+              <div class="hero-block-text">2 каменных дома в престижном районе Петербурга (15–25 тыс. руб. каждый). Или 20 лучших лошадей с экипажем. К 27 годам — самый дорогой писатель страны.</div>
+            </div>
+            <div class="hero-block">
+              <div class="hero-block-label">На что реально потратил</div>
+              <div class="hero-block-text">Аренда квартиры: 4 300 руб./год — 11 комнат, кухня, конюшня на 6 лошадей. Семья требовала минимум 30 000 руб./год. Карточный долг — 75 000 руб. Умер с 300 рублями в кармане и долгом 135 800 руб.</div>
+            </div>
+            <div class="hero-block hero-block-today">
+              <div class="hero-block-label">Что можно позволить сейчас</div>
+              <div class="hero-block-value gold">500 – 600 млн руб.</div>
+              <div class="hero-block-text">Евродвушка (50–60 м²) в Москве или 2 Porsche Cayenne. Если бы жил сейчас — Forbes 30 до 30. В 2019 году рукопись «Онегина» на Christie's ушла за $582 000.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="hero-photo-ph">
+          <div class="hero-photo-ph-text">Портрет<br>Абрикосова</div>
+        </div>
+        <div class="hero-body">
+          <div class="hero-episode"><span class="label">Рилс 03</span></div>
+          <div class="hero-era">1824 — 1904</div>
+          <div class="hero-name">Алексей Абрикосов</div>
+          <div class="hero-work">Из крепостных в царские кондитеры. Годовой оборот — бюджет целой губернии.</div>
+          <div class="hero-money">
+            <div class="hero-block">
+              <div class="hero-block-label">Сколько вложил</div>
+              <div class="hero-block-text">Уставный капитал 2 000 000 руб. Начинал с 5 000 руб. приданого жены (1840). Оборот к 1890 — 1 800 000 руб./год. 1 900 рабочих.</div>
+            </div>
+            <div class="hero-block">
+              <div class="hero-block-label">Что можно было позволить</div>
+              <div class="hero-block-text">Крупнейшая кондитерская фабрика России. Первые фантики для конфет в стране. Поставщик Двора Его Императорского Величества с 1899.</div>
+            </div>
+            <div class="hero-block">
+              <div class="hero-block-label">На что реально потратил</div>
+              <div class="hero-block-text">6 городских школ. Детская больница им. Морозова. Родильный дом на 51 койку (сейчас Роддом №6). Психиатрическая клиника (сейчас им. Алексеева). Вклад в строительство здания Московской консерватории.</div>
+            </div>
+            <div class="hero-block hero-block-today">
+              <div class="hero-block-label">Что можно позволить сейчас</div>
+              <div class="hero-block-value gold">2 – 10 млрд руб.</div>
+              <div class="hero-block-text">Торговый центр в Москве, 5–10 тыс. м². 2–3 млрд — районный ТЦ. 10 млрд — уровень «Гудзона» или «Золотого Вавилона».</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── FORMAT ── -->
+<section class="format-section">
+  <div class="format-inner">
+    <div class="format-header reveal">
+      <div>
+        <div class="label" style="margin-bottom:20px;">Формат</div>
+        <div class="format-headline">Серия рилсов Forbes</div>
+      </div>
+      <div class="format-desc">
+        Короткий вертикальный формат для максимального охвата. Один герой — один рилс — одна история про деньги.
+      </div>
+    </div>
+    <div class="format-grid reveal" style="grid-template-columns:1fr;">
+      <div class="format-item">
+        <div class="format-item-icon">🎬</div>
+        <div class="format-item-title">Короткий формат</div>
+        <div class="format-item-body">Один рилс — около 60 секунд. Вся история от биографии до вывода в одном ролике. Удержать внимание до последней секунды.</div>
+        <div class="format-platforms">
+          <span class="platform-tag">Instagram Reels</span>
+          <span class="platform-tag">YouTube Shorts</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── NEXT HEROES ── -->
+<section class="next-heroes">
+  <div class="next-heroes-inner">
+    <div class="next-heroes-header reveal">
+      <div>
+        <div class="label label-light" style="margin-bottom:20px;">Следующие рилсы</div>
+        <div class="next-heroes-headline">Другие герои</div>
+      </div>
+      <div class="next-heroes-desc">
+        Пул следующих выпусков. Литература, живопись, ювелирное дело, предпринимательство — история русских денег во всём многообразии.
+      </div>
+    </div>
+    <div class="next-heroes-list reveal">
+      <div class="next-hero-row">
+        <div class="next-hero-left">
+          <div class="next-hero-idx">04</div>
+          <div class="next-hero-name">Николай Бугров</div>
+        </div>
+        <div class="next-hero-meta">Хлебный король · Нижний Новгород</div>
+      </div>
+      <div class="next-hero-row">
+        <div class="next-hero-left">
+          <div class="next-hero-idx">05</div>
+          <div class="next-hero-name">Савва Мамонтов</div>
+        </div>
+        <div class="next-hero-meta">Железные дороги · Меценат</div>
+      </div>
+      <div class="next-hero-row">
+        <div class="next-hero-left">
+          <div class="next-hero-idx">06</div>
+          <div class="next-hero-name">Савва Морозов</div>
+        </div>
+        <div class="next-hero-meta">Текстильная династия · Предпринимательство</div>
+      </div>
+      <div class="next-hero-row">
+        <div class="next-hero-left">
+          <div class="next-hero-idx">07</div>
+          <div class="next-hero-name">Пётр Смирнов</div>
+        </div>
+        <div class="next-hero-meta">Винодел · Бизнес</div>
+      </div>
+      <div class="next-hero-row">
+        <div class="next-hero-left">
+          <div class="next-hero-idx">08</div>
+          <div class="next-hero-name">Братья Баташёвы</div>
+        </div>
+        <div class="next-hero-meta">Металлургия на Оке · Производство</div>
+      </div>
+      <div class="next-hero-row">
+        <div class="next-hero-left">
+          <div class="next-hero-idx">09</div>
+          <div class="next-hero-name">Александр Чичкин</div>
+        </div>
+        <div class="next-hero-meta">Молочная компания · Предпринимательство</div>
+      </div>
+      <div class="next-hero-row">
+        <div class="next-hero-left">
+          <div class="next-hero-idx">10</div>
+          <div class="next-hero-name">Антон Чехов</div>
+        </div>
+        <div class="next-hero-meta">Писатель · Литература</div>
+      </div>
+      <div class="next-hero-row">
+        <div class="next-hero-left">
+          <div class="next-hero-idx">11</div>
+          <div class="next-hero-name">Фёдор Шаляпин</div>
+        </div>
+        <div class="next-hero-meta">Певец · Музыка</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── REFERENCES ── -->
+<section class="references">
+  <div class="references-inner">
+    <div class="label reveal" style="margin-bottom:20px;">Референсы</div>
+    <div class="refs-headline reveal">На что мы опираемся</div>
+    <div class="refs-grid reveal">
+      <div>
+        <div class="refs-col-label">Контентные референсы</div>
+        <div class="ref-list">
+          <div class="ref-row"><div class="ref-n">01</div><div><div class="ref-title">Drunk History (Comedy Central)</div><div class="ref-desc">История через личные истории — с иронией, не в лоб</div></div></div>
+          <div class="ref-row"><div class="ref-n">02</div><div><div class="ref-title">Vox Explainer / YouTube</div><div class="ref-desc">Инфографика + нарратив + сравнение данных</div></div></div>
+          <div class="ref-row"><div class="ref-n">03</div><div><div class="ref-title">The Price of Everything (HBO)</div><div class="ref-desc">Деньги и ценность в искусстве — документальный взгляд</div></div></div>
+          <div class="ref-row"><div class="ref-n">04</div><div><div class="ref-title">Stuff You Should Know</div><div class="ref-desc">Глубокое погружение в историю через экономику и быт</div></div></div>
+        </div>
+      </div>
+      <div>
+        <div class="refs-col-label">Визуальные референсы</div>
+        <div class="ref-list">
+          <div class="ref-row"><div class="ref-n">01</div><div><div class="ref-title"><a href="https://youtu.be/SjAWH80NJUo" target="_blank" style="color:var(--white);text-decoration:none;">YouTube: Референс 1</a></div><div class="ref-desc">Визуальный стиль подачи исторических денег</div></div></div>
+          <div class="ref-row"><div class="ref-n">02</div><div><div class="ref-title"><a href="https://youtu.be/QTtn4ilhj98" target="_blank" style="color:var(--white);text-decoration:none;">YouTube: Референс 2</a></div><div class="ref-desc">Нарратив + визуал + сравнение данных в рилсе</div></div></div>
+          <div class="ref-row"><div class="ref-n">03</div><div><div class="ref-title"><a href="https://youtube.com/shorts/j7qaASVqy30" target="_blank" style="color:var(--white);text-decoration:none;">YouTube Shorts: Референс 3</a></div><div class="ref-desc">Короткий формат — история в 60 секунд</div></div></div>
+          <div class="ref-row"><div class="ref-n">04</div><div><div class="ref-title">Forbes Print Edition</div><div class="ref-desc">Золото как акцент власти и капитала</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-title">Как зарабатывали <span>ОНЕ?</span></div>
+      <div class="footer-sub">Forbes Russia · Серия рилсов · Сезон 1 · 2026</div>
+    </div>
+    <div class="footer-right">
+      <div class="footer-label">Проект</div>
+      <div class="footer-forbes">Forbes Russia</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0, rootMargin: '0px 0px -40px 0px' });
+reveals.forEach(el => observer.observe(el));
+setTimeout(() => reveals.forEach(el => el.classList.add('visible')), 800);
+</script>
+</body>
+</html>
